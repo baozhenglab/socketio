@@ -40,4 +40,5 @@ type HandlerUserJoin interface {
 	OnAuthFail(sc goservice.ServiceContext, data interface{}, as AppSocket)
 	OnAuthSuccessfully(sc goservice.ServiceContext, data interface{}, as AppSocket)
 	OnUserDisConnect(sc goservice.ServiceContext, as AppSocket)
+	AllowListenEvent(AppSocket)
 }
