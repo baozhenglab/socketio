@@ -90,12 +90,16 @@ func (hdl *socketHandler) AddObservers(server *socketio.Server, sc goservice.Ser
 			al.OnUserDisConnect(sc, as)
 		})
 		_ = as.On(SckAuthenticate, func(data interface{}) {
-			user, err := al.OnAuthentication(sc, data)
-			if err != nil {
-				al.OnAuthFail(sc, data, as)
-			} else {
-				as.SetCurrentUser(user)
-				hdl.UserConnect(user.UserID(), as)
+			as.once.Do(func() {
+				user, err := al.OnAuthentication(sc, as, data)
+				if err != nil {
+					al.OnAuthFail(sc, data, as)
+				} else {
+					as.SetCurrentUser(user)
+				}
+			})
+			if as.cu != nil {
+				hdl.UserConnect(as.cu.UserID(), as)
 				al.OnAuthSuccessfully(sc, data, as)
 			}
 		})

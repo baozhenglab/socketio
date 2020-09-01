@@ -36,7 +36,7 @@ type AppSocket interface {
 }
 
 type HandlerUserJoin interface {
-	OnAuthentication(sc goservice.ServiceContext, data interface{}) (sdkcm.Requester, error)
+	OnAuthentication(sc goservice.ServiceContext, as AppSocket, data interface{}) (sdkcm.Requester, error)
 	OnAuthFail(sc goservice.ServiceContext, data interface{}, as AppSocket)
 	OnAuthSuccessfully(sc goservice.ServiceContext, data interface{}, as AppSocket)
 	OnUserDisConnect(sc goservice.ServiceContext, as AppSocket)
