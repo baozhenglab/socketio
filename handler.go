@@ -94,8 +94,10 @@ func (hdl *socketHandler) AddObservers(server *socketio.Server, sc goservice.Ser
 				user, err := al.OnAuthentication(sc, as, data)
 				if err != nil {
 					al.OnAuthFail(sc, data, as)
+					return
 				} else {
 					as.SetCurrentUser(user)
+					al.AllowListenEvent(as)
 				}
 			})
 			if as.cu != nil {
