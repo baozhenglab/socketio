@@ -3,7 +3,7 @@ module github.com/baozhenglab/socketio
 go 1.13
 
 require (
-	github.com/baozhenglab/go-sdk v1.0.0
+	github.com/baozhenglab/go-sdk v1.0.2
 	github.com/baozhenglab/sdkcm v1.0.1
 	github.com/facebookgo/flagenv v0.0.0-20160425205200-fcd59fca7456 // indirect
 	github.com/gin-gonic/gin v1.6.3
